@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer-clock</title>
+    <style>
+        *{margin: 0;}
+        .main{
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(217, 83, 190);
+            display: grid; 
+             place-items: center;
+            margin: auto;
+        }
+        .center{
+            width: 70%;
+            margin: auto;
+            display: grid; 
+            place-items: center;
+            
+        }
+        h1{
+            width: 50%;
+            padding: 5px;
+            background-color: aqua;
+            text-align: center;
+
+        }
+        .time{
+            margin-top: 30px;
+            display: flex;
+        }
+        .day{
+            width: 70px;
+            height: 60px;
+            background-color:  rgba(38, 92, 210, 0.46);
+            text-align: center;
+            padding: 10px;
+            margin-left: 20px;
+        }
+        .hour{
+            width: 70px;
+            height: 60px;
+            background-color:  rgba(38, 92, 210, 0.46);
+            text-align: center;
+            padding: 10px;
+            margin-left: 5px;
+        }
+        .minute{
+            width: 70px;
+            height: 60px;
+            background-color:  rgba(38, 92, 210, 0.46);
+            text-align: center;
+            padding: 10px;
+            margin-left: 5px;
+        }
+        .second{
+            width: 70px;
+            height: 60px;
+            background-color: rgba(38, 92, 210, 0.46);
+            text-align: center;
+            padding: 10px;
+            margin-left: 5px;
+        }
+        h3{
+            color: white;
+            margin-top: 15px;
+        }
+        h2{
+            color: rgba(50, 4, 93, 0.983);
+        }
+        .row{
+            margin: auto;
+            display: grid;
+            place-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="center col-lg-2 col-md-4 col-sm-6 col-12">
+            <h1 id="heading1">TIME IN RAMZAN</h1>
+           <div class="row col-lg-2 col-md-4 col-sm-6 col-12">
+            <div class="time">
+                <div class="day">
+                    <h2 id="days"></h2>
+                    <h3>Days</h3>
+                </div>
+                <div class="hour">
+                    <h2 id="hours"></h2>
+                    <h3>Hours</h3>
+                </div>
+                <div class="minute">
+                    <h2 id="minutes"></h2>
+                    <h3>Minutes</h3>
+                </div>
+                <div class="second">
+                    <h2 id="seconds"></h2>
+                    <h3>Seconds</h3>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+    <script>
+        var targetTime=new Date(2023, 3, 23) 
+        var center =document.querySelector(".center")
+        var times =document.querySelector(".time")
+        var heading1 =document.getElementById("heading1")
+        var days =document.getElementById("days")
+        var hours =document.getElementById("hours")
+        var minutes=document.getElementById("minutes")
+        var seconds =document.getElementById("seconds")
+
+        var time=setInterval(()=>{
+        var currentTime=new Date()
+        var diff=targetTime-currentTime
+
+         if(diff>0)
+        {
+        var day = parseInt(diff / (1000 * 60 * 60 * 24))
+                if (day < 10)
+                    days.innerHTML = `0${day}`
+                else
+                    days.innerHTML = `${day}`
+        
+            var hour=parseInt(diff%(1000 * 60 * 60 * 24)/(1000 * 60 * 60))
+            if(hour<10)
+            hours.innerHTML=`0${hour}`
+            else
+            hours.innerHTML=`${hour}`
+
+            var minute=parseInt(diff%(1000 * 60 * 60 )/(1000 * 60))
+            if(minute<10)
+            minutes.innerHTML=`0${minute}`
+            else
+            minutes.innerHTML=`${minute}`
+
+            var second=parseInt(diff%(1000 * 60)/(1000))
+            if(second<10)
+            seconds.innerHTML=`0${second}`
+            else
+            seconds.innerHTML=`${second}`
+        }
+        else{
+            heading1.innerHTML="Happy RAMZAN"
+            center.removeChild(times)
+        }
+        },1000)
+
+    </script>
+</body>
+</html>
